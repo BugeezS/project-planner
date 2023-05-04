@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Project-Planner</title>
+  </head>
+  <body>
+    <head>
+      <nav class="navigate">
+        <select name="Tri" id="select_sort">
+          <option value="date">Date</option>
+          <option value="name">Nom</option>
+          <option value="urgent">Urgent</option>
+        </select>
+        <input type="checkbox" name="to_do" id="to_do_checkbox" />
+        <span class="to_do__nav">To-Do</span>
+        <input type="checkbox" name="doing" id="doing_checkbox" />
+        <span class="doing__nav">Doing</span>
+        <input type="checkbox" name="done" id="done_checkbox" />
+        <span class="done__nav">Done</span>
+      </nav>
+    </head>
+    <main>
+      <section class="to_do">
+        <h3>To Do</h3>
+        <input type="button" value="Add task" id="to_do__button"/>
+      </section>
+      <section class="doing">
+        <h3>Doing</h3>
+        <input type="button" value="Add task" id="doing__button" />
+      </section>
+      <section class="done">
+        <h3>Done</h3>
+        <input type="button" value="Add task" id="done__button" />
+      </section>
+    </main>
+    <footer></footer>
+    <script defer src="assets/js/script.js" type="module"></script>
+  </body>
+</html>
