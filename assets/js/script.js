@@ -15,7 +15,7 @@ const transferButton = document.getElementById("transfertButton");
 // Add a click event listener to the Transfer button
 transferButton.addEventListener("click", () => {
   // Get all the task items in the To Do section
-  const toDoSection = document.querySelector("div");
+  const toDoSection = document.querySelector(".to_do__div");
   const toDoTasks = toDoSection.querySelectorAll("*");
 
   // Loop through the task items and move them to the Doing section

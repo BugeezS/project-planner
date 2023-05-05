@@ -2,10 +2,13 @@ export function creatodo() {
   let i = 0;
   const tododiv = document.querySelector(".to_do");
   const creatdiv = document.createElement("div");
-  creatdiv.classList.add("to_do__div" + i);
+  creatdiv.classList.add("to_do__div");
 
   const countdownDiv = document.createElement("div");
   countdownDiv.classList.add("countdown");
+  const transferButton = document.createElement("input");
+  transferButton.classList.add("transfertButton");
+  tododiv.appendChild(transferButton);
 
   const createDivInputText = document.createElement("input");
   createDivInputText.setAttribute("type", "text");
@@ -69,7 +72,7 @@ export function creatodo() {
     createDivInputCheckbox.setAttribute("type", "checkbox");
     createDivInputCheckbox.classList.add("to_do__div__input_checkbox");
     creatDivli.appendChild(createDivInputCheckbox);
-    to.appendChild(countdownDiv);
+    tododiv.appendChild(countdownDiv);
 
     creatDivUl.appendChild(creatDivli);
     createDivInputText.value = "";
