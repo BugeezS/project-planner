@@ -8,12 +8,18 @@
     <title>Project-Planner</title>
   </head>
   <body>
-    <head>
+    <header>
       <nav class="navigate">
         <select name="Tri" id="select_sort">
           <option value="date">Date</option>
           <option value="name">Nom</option>
           <option value="urgent">Urgent</option>
+          <input
+            type="button"
+            name="transfertButton"
+            id="transfertButton"
+            value="button"
+          />
         </select>
         <input type="checkbox" name="to_do" id="to_do_checkbox" />
         <span class="to_do__nav">To-Do</span>
@@ -22,7 +28,7 @@
         <input type="checkbox" name="done" id="done_checkbox" />
         <span class="done__nav">Done</span>
       </nav>
-    </head>
+    </header>
     <main>
       <section class="to_do">
         <h3>To Do</h3>
@@ -30,7 +36,7 @@
       </section>
       <section class="doing">
         <h3>Doing</h3>
-        <input type="button" value="Add task" id="doing__button" />
+        <!-- <input type="button" value="Add task" id="doing__button" /> -->
       </section>
       <section class="done">
         <h3>Done</h3>

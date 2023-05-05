@@ -69,7 +69,7 @@ export function creatodo() {
     createDivInputCheckbox.setAttribute("type", "checkbox");
     createDivInputCheckbox.classList.add("to_do__div__input_checkbox");
     creatDivli.appendChild(createDivInputCheckbox);
-    tododiv.appendChild(countdownDiv);
+    to.appendChild(countdownDiv);
 
     creatDivUl.appendChild(creatDivli);
     createDivInputText.value = "";

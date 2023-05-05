@@ -27,6 +27,9 @@ export function createDoing() {
     createDivLi.innerText = createDivInputText.value;
     createDivUl.appendChild(createDivLi);
     createDivInputText.value = "";
+    const todos = JSON.parse(localStorage.getItem("todos")) || [];
+    todos.push(creatDivli.innerText);
+    localStorage.setItem("todos", JSON.stringify(todos));
   }
 
   i++;
