@@ -7,6 +7,42 @@ export function creatodo() {
   const countdownDiv = document.createElement("div");
   countdownDiv.classList.add("countdown");
   creatdiv.appendChild(countdownDiv);
+      const createDivInputCheckboxAll = document.createElement("input");
+    createDivInputCheckboxAll.setAttribute("type", "checkbox");
+    createDivInputCheckboxAll.classList.add("to_do__div__input_checkbox_all");
+    createDivInputCheckboxAll.addEventListener("change", function () {
+        const createDivInputCheckboxes = creatdiv.querySelectorAll(
+            ".to_do__div__input_checkbox"
+        );
+        for (let i = 0; i < createDivInputCheckboxes.length; i++) {
+            createDivInputCheckboxes[i].checked = createDivInputCheckboxAll.checked;
+        }
+    });
+    creatdiv.appendChild(createDivInputCheckboxAll);
+    const createDivInputCheckboxAllLabel = document.createElement("label");
+    createDivInputCheckboxAllLabel.innerText = "Select All";
+    creatdiv.appendChild(createDivInputCheckboxAllLabel);
+    const creatDivUl = document.createElement("ul");
+    creatDivUl.classList.add("to_do__div__ul");
+    creatdiv.appendChild(creatDivUl);
+    const createDivInputDeleteAllBtn = document.createElement("input");
+    createDivInputDeleteAllBtn.setAttribute("type", "button");
+    createDivInputDeleteAllBtn.setAttribute("value", "Delete All");
+    createDivInputDeleteAllBtn.classList.add("to_do__div__input_btn_delete_all");
+    createDivInputDeleteAllBtn.addEventListener("click", function () {
+        const createDivUl = creatdiv.querySelector(".to_do__div__ul");
+        const createDivInputCheckboxes = creatdiv.querySelectorAll(
+            ".to_do__div__input_checkbox"
+        );
+        for (let i = 0; i < createDivInputCheckboxes.length; i++) {
+            const checkbox = createDivInputCheckboxes[i];
+            if (checkbox.checked) {
+                const li = checkbox.parentElement;
+                creatDivUl.removeChild(li);
+            }
+        }
+    });
+    creatdiv.appendChild(createDivInputDeleteAllBtn);
 
   const createDivInputText = document.createElement("input");
   createDivInputText.setAttribute("type", "text");
@@ -31,6 +67,10 @@ export function creatodo() {
 
     const creatDivli = document.createElement("li");
     creatDivli.innerText = createDivInputText.value;
+     const createDivInputCheckbox = document.createElement("input");
+        createDivInputCheckbox.setAttribute("type", "checkbox");
+        createDivInputCheckbox.classList.add("to_do__div__input_checkbox");
+        creatDivli.appendChild(createDivInputCheckbox);
 
     creatDivUl.appendChild(creatDivli);
     createDivInputText.value = "";
@@ -89,6 +129,7 @@ export function creatodo() {
     }
   }
 
+
   const countdownInput = document.createElement("input");
   countdownInput.setAttribute("type", "text");
   countdownInput.classList.add("to_do__div__countdown_input");
@@ -145,4 +186,7 @@ export function creatodo() {
       setInterval(updateCountdown, 1000);
     }
   }
+
+    createDivInputBtn.addEventListener("click", addTextUl);
+
 }
