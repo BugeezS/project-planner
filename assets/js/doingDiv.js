@@ -4,11 +4,13 @@ export function createDoing() {
   const doingDiv = document.querySelector(".doing");
   const createDiv = document.createElement("div");
   createDiv.classList.add("doing__div" + i);
+
   doingDiv.appendChild(createDiv);
   const createDivInputText = document.createElement("input");
   createDivInputText.setAttribute("type", "text");
   createDivInputText.classList.add("doing__div__input_text");
   createDiv.appendChild(createDivInputText);
+
   const createDivInputBtn = document.createElement("input");
   createDivInputBtn.setAttribute("type", "button");
   createDivInputBtn.setAttribute("value", "Add");
@@ -35,4 +37,6 @@ export function createDoing() {
   i++;
 
   createDivInputBtn.addEventListener("click", addTextUl);
+
+  
 }
