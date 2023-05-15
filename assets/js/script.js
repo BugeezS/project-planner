@@ -13,56 +13,66 @@ transferButton.addEventListener("click", () => {
 
   const toDoUl = toDoSection.querySelector(".to_do__div__ul");
   const countdownDiv = toDoSection.querySelector(".countdown");
-  const i = 0;
 
   if (toDoUl) {
-    doingSection.appendChild(toDoUl);
-  }
-  if (countdownDiv) {
-    doingSection.appendChild(countdownDiv);
+    const doingDiv = document.createElement("div");
+    doingDiv.classList.add("doing__div");
+
+    if (countdownDiv) {
+      doingDiv.appendChild(countdownDiv);
+    }
+    doingDiv.appendChild(toDoUl);
+
+    const transferButtonDiv = document.createElement("div");
+    transferButtonDiv.classList.add("transfer-button-div");
+    const transferButtonDone = document.createElement("input");
+    transferButtonDone.type = "button";
+    transferButtonDone.value = "Done";
+    transferButtonDone.classList.add("transfertButtonDone");
+    transferButtonDiv.appendChild(transferButtonDone);
+    doingDiv.appendChild(transferButtonDiv);
+
+    doingSection.appendChild(doingDiv);
   }
 
   const tododiv = document.querySelector(".to_do__div");
   tododiv.remove();
 
-  const transferButtonDone = document.createElement("input");
-  transferButtonDone.type = "button";
-  transferButtonDone.value = "Done";
-  transferButtonDone.classList.add("transfertButtonDone");
-  doingSection.appendChild(transferButtonDone);
+  const transferButtonDoneUse = document.querySelectorAll(
+    ".transfertButtonDone"
+  );
 
-  const transferButtonDoneUse = document.querySelector(".transfertButtonDone");
+  transferButtonDoneUse.forEach((button) => {
+    button.addEventListener("click", () => {
+      const doneSection = document.querySelector(".done");
+      const toDoDiv = button.closest(".doing__div");
 
-  transferButtonDoneUse.addEventListener("click", () => {
-    const doneSection = document.querySelector(".done");
-    const doingSection = document.querySelector(".doing");
+      if (toDoDiv) {
+        const ulElement = toDoDiv.querySelector(".to_do__div__ul");
+        const countdownDiv = toDoDiv.querySelector(".countdown");
 
-    const toDoUl = doingSection.querySelector(".to_do__div__ul");
-    const countdownDiv = doingSection.querySelector(".countdown");
+        if (ulElement) {
+          const doneDiv = document.createElement("div");
+          doneDiv.classList.add("done__div");
+          doneDiv.appendChild(ulElement);
+          if (countdownDiv) {
+            doneDiv.appendChild(countdownDiv);
+          }
 
-    if (toDoUl) {
-      doneSection.appendChild(toDoUl);
-    }
-    if (countdownDiv) {
-      doneSection.appendChild(countdownDiv);
-    }
+          const deleteButtonDone = document.createElement("input");
+          deleteButtonDone.type = "button";
+          deleteButtonDone.value = "Delete";
+          deleteButtonDone.classList.add("deleteButtonDone");
+          doneDiv.appendChild(deleteButtonDone);
 
-    transferButtonDone.remove();
+          doneSection.appendChild(doneDiv);
 
-    const deleteButtonDone = document.createElement("input");
-    deleteButtonDone.type = "button";
-    deleteButtonDone.value = "Delete";
-    deleteButtonDone.classList.add("deleteButtonDone");
-    doneSection.appendChild(deleteButtonDone);
-
-    deleteButtonDone.addEventListener("click", () => {
-      const transferredElements = doneSection.querySelectorAll(
-        ".to_do__div__ul, .countdown"
-      );
-      transferredElements.forEach((element) => {
-        element.remove();
-      });
-      deleteButtonDone.remove();
+          deleteButtonDone.addEventListener("click", () => {
+            doneDiv.remove();
+          });
+        }
+        toDoDiv.remove();
+      }
     });
   });
 });
