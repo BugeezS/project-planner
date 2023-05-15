@@ -1,4 +1,53 @@
+* {
+  margin: 5px;
+  padding: 5px;
+  font-family: "Sigmar", cursive;
+  box-sizing: border-box;
+}
+
 main {
   display: flex;
   justify-content: space-around;
+}
+
+body {
+  background-color: rgb(9, 87, 121);
+  background: linear-gradient(90deg, rgb(9, 87, 121) 11%, rgba(0, 212, 255, 0.4038865546) 100%);
+}
+
+.task-list {
+  list-style-type: none;
+  padding: 0;
+}
+.task-list li {
+  margin-bottom: 10px;
+}
+.task-list li .task-title {
+  font-weight: bold;
+}
+.task-list li .task-description {
+  color: #777;
+}
+.task-list li .task-button {
+  background-color: #f39c12;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.task-list li .task-button:hover {
+  background-color: #c87f0a;
+}
+
+.to_do {
+  background-color: #b6daf2;
+}
+
+.doing {
+  background-color: #8bc4ea;
+}
+
+.done {
+  background-color: #5faee3;
 }/*# sourceMappingURL=style.css.map */
