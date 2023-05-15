@@ -1,5 +1,4 @@
 export function creatodo() {
-
   let i = 0;
   const tododiv = document.querySelector(".to_do");
   const creatdiv = document.createElement("div");
@@ -122,7 +121,8 @@ export function creatodo() {
             countdownDiv.innerText = `${hoursLeft} hours left`;
           }
         }
-    });
+      }
+    }
     creatdiv.appendChild(createDivInputCheckboxAll);
     const createDivInputCheckboxAllLabel = document.createElement("label");
     createDivInputCheckboxAllLabel.innerText = "Select All";
@@ -133,19 +133,21 @@ export function creatodo() {
     const createDivInputDeleteAllBtn = document.createElement("input");
     createDivInputDeleteAllBtn.setAttribute("type", "button");
     createDivInputDeleteAllBtn.setAttribute("value", "Delete All");
-    createDivInputDeleteAllBtn.classList.add("to_do__div__input_btn_delete_all");
+    createDivInputDeleteAllBtn.classList.add(
+      "to_do__div__input_btn_delete_all"
+    );
     createDivInputDeleteAllBtn.addEventListener("click", function () {
-        const createDivUl = creatdiv.querySelector(".to_do__div__ul");
-        const createDivInputCheckboxes = creatdiv.querySelectorAll(
-            ".to_do__div__input_checkbox"
-        );
-        for (let i = 0; i < createDivInputCheckboxes.length; i++) {
-            const checkbox = createDivInputCheckboxes[i];
-            if (checkbox.checked) {
-                const li = checkbox.parentElement;
-                creatDivUl.removeChild(li);
-            }
+      const createDivUl = creatdiv.querySelector(".to_do__div__ul");
+      const createDivInputCheckboxes = creatdiv.querySelectorAll(
+        ".to_do__div__input_checkbox"
+      );
+      for (let i = 0; i < createDivInputCheckboxes.length; i++) {
+        const checkbox = createDivInputCheckboxes[i];
+        if (checkbox.checked) {
+          const li = checkbox.parentElement;
+          creatDivUl.removeChild(li);
         }
+      }
     });
     creatdiv.appendChild(createDivInputDeleteAllBtn);
     tododiv.appendChild(creatdiv);
@@ -153,24 +155,21 @@ export function creatodo() {
     divul.classList.add("to_do__div__ul");
     creatdiv.appendChild(divul);
     function addTextUl() {
-        const createDivInputText = creatdiv.querySelector(
-            ".to_do__div__input_text"
-        );
-        const creatDivUl = creatdiv.querySelector(".to_do__div__ul");
+      const createDivInputText = creatdiv.querySelector(
+        ".to_do__div__input_text"
+      );
+      const creatDivUl = creatdiv.querySelector(".to_do__div__ul");
 
-        const creatDivli = document.createElement("li");
-        creatDivli.innerText = createDivInputText.value;
-        const createDivInputCheckbox = document.createElement("input");
-        createDivInputCheckbox.setAttribute("type", "checkbox");
-        createDivInputCheckbox.classList.add("to_do__div__input_checkbox");
-        creatDivli.appendChild(createDivInputCheckbox);
-        tododiv.appendChild(countdownDiv);
+      const creatDivli = document.createElement("li");
+      creatDivli.innerText = createDivInputText.value;
+      const createDivInputCheckbox = document.createElement("input");
+      createDivInputCheckbox.setAttribute("type", "checkbox");
+      createDivInputCheckbox.classList.add("to_do__div__input_checkbox");
+      creatDivli.appendChild(createDivInputCheckbox);
+      tododiv.appendChild(countdownDiv);
 
-        creatDivUl.appendChild(creatDivli);
-        createDivInputText.value = "";
-
-
-
+      creatDivUl.appendChild(creatDivli);
+      createDivInputText.value = "";
     }
 
     i++;
@@ -178,52 +177,52 @@ export function creatodo() {
     createDivInputBtn.addEventListener("click", addTextUl);
 
     function addCountdown() {
-        const countdownNum = parseInt(countdownInput.value);
-        if (countdownNum) {
-            const now = new Date();
-            const deadline = new Date(
-                now.getTime() + countdownNum * 24 * 60 * 60 * 1000
+      const countdownNum = parseInt(countdownInput.value);
+      if (countdownNum) {
+        const now = new Date();
+        const deadline = new Date(
+          now.getTime() + countdownNum * 24 * 60 * 60 * 1000
+        );
+
+        const daysLeft = Math.floor(countdownNum);
+        const hoursLeft = Math.floor((countdownNum % 1) * 24);
+
+        if (daysLeft > 0) {
+          countdownDiv.innerText = `${daysLeft} days left`;
+        } else if (hoursLeft > 0) {
+          countdownDiv.innerText = `${hoursLeft} hours left`;
+        }
+
+        countdownInput.value = "";
+        countdownInput.disabled = true;
+        countdownBtn.disabled = true;
+
+        createDivInputText.disabled = true;
+        createDivInputBtn.disabled = true;
+
+        function updateCountdown() {
+          const now = new Date();
+          const timeLeft = deadline.getTime() - now.getTime();
+
+          if (timeLeft <= 0) {
+            countdownDiv.innerText = "Time's up!";
+          } else {
+            const daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hoursLeft = Math.floor(
+              (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
             );
 
-            const daysLeft = Math.floor(countdownNum);
-            const hoursLeft = Math.floor((countdownNum % 1) * 24);
-
             if (daysLeft > 0) {
-                countdownDiv.innerText = `${daysLeft} days left`;
+              countdownDiv.innerText = `${daysLeft} days left`;
             } else if (hoursLeft > 0) {
-                countdownDiv.innerText = `${hoursLeft} hours left`;
+              countdownDiv.innerText = `${hoursLeft} hours left`;
             }
-
-            countdownInput.value = "";
-            countdownInput.disabled = true;
-            countdownBtn.disabled = true;
-
-            createDivInputText.disabled = true;
-            createDivInputBtn.disabled = true;
-
-            function updateCountdown() {
-                const now = new Date();
-                const timeLeft = deadline.getTime() - now.getTime();
-
-                if (timeLeft <= 0) {
-                    countdownDiv.innerText = "Time's up!";
-                } else {
-                    const daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                    const hoursLeft = Math.floor(
-                        (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-                    );
-
-                    if (daysLeft > 0) {
-                        countdownDiv.innerText = `${daysLeft} days left`;
-                    } else if (hoursLeft > 0) {
-                        countdownDiv.innerText = `${hoursLeft} hours left`;
-                    }
-                }
-            }
-
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
+          }
         }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      }
     }
 
     const countdownInput = document.createElement("input");
@@ -239,101 +238,85 @@ export function creatodo() {
 
     countdownBtn.addEventListener("click", addCountdown);
     function addCountdown() {
-        const countdownNum = parseInt(countdownInput.value);
-        if (countdownNum) {
-            const now = new Date();
-            const deadline = new Date(
-                now.getTime() + countdownNum * 24 * 60 * 60 * 1000
+      const countdownNum = parseInt(countdownInput.value);
+      if (countdownNum) {
+        const now = new Date();
+        const deadline = new Date(
+          now.getTime() + countdownNum * 24 * 60 * 60 * 1000
+        );
+
+        const daysLeft = Math.floor(countdownNum);
+        const hoursLeft = Math.floor((countdownNum % 1) * 24);
+
+        if (daysLeft > 0) {
+          countdownDiv.innerText = `${daysLeft} days left`;
+        } else if (hoursLeft > 0) {
+          countdownDiv.innerText = `${hoursLeft} hours left`;
+        }
+
+        countdownInput.remove();
+        countdownBtn.remove();
+
+        function updateCountdown() {
+          const now = new Date();
+          const timeLeft = deadline.getTime() - now.getTime();
+
+          if (timeLeft <= 0) {
+            countdownDiv.innerText = "Time's up!";
+          } else {
+            const daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hoursLeft = Math.floor(
+              (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
             );
 
-            const daysLeft = Math.floor(countdownNum);
-            const hoursLeft = Math.floor((countdownNum % 1) * 24);
-
             if (daysLeft > 0) {
-                countdownDiv.innerText = `${daysLeft} days left`;
+              countdownDiv.innerText = `${daysLeft} days left`;
             } else if (hoursLeft > 0) {
-                countdownDiv.innerText = `${hoursLeft} hours left`;
+              countdownDiv.innerText = `${hoursLeft} hours left`;
             }
-
-            countdownInput.remove();
-            countdownBtn.remove();
-
-            function updateCountdown() {
-                const now = new Date();
-                const timeLeft = deadline.getTime() - now.getTime();
-
-                if (timeLeft <= 0) {
-                    countdownDiv.innerText = "Time's up!";
-                } else {
-                    const daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                    const hoursLeft = Math.floor(
-                        (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-                    );
-
-                    if (daysLeft > 0) {
-                        countdownDiv.innerText = `${daysLeft} days left`;
-                    } else if (hoursLeft > 0) {
-                        countdownDiv.innerText = `${hoursLeft} hours left`;
-                    }
-                }
-            }
-
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
+          }
         }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      }
     }
 
     createDivInputBtn.addEventListener("click", addTextUl);
-}
-
-
-const checkbox = document.querySelector("#to_do_checkbox");
-const to_do_test = document.querySelector(".to_do");
-checkbox.addEventListener('change', function() {
-  if (this.checked) {
-    console.log("checkbox is checked..");
-    to_do_test.style.visibility = "visible";
-  } else {
-    console.log("checkbox is not checked..");
-    to_do_test.style.visibility = "hidden";
-
   }
-});
+
+  const checkbox = document.querySelector("#to_do_checkbox");
+  const to_do_test = document.querySelector(".to_do");
+  checkbox.addEventListener("change", function () {
+    if (this.checked) {
+      console.log("checkbox is checked..");
+      to_do_test.style.visibility = "visible";
+    } else {
+      console.log("checkbox is not checked..");
+      to_do_test.style.visibility = "hidden";
+    }
+  });
 
   const selectSort = document.getElementById("select_sort");
-selectSort.addEventListener("change", function() {
-  const selectedValue = this.value;
-  
-});
+  selectSort.addEventListener("change", function () {
+    const selectedValue = this.value;
+  });
 
-function toggleSectionsVisibility(selectedValue) {
-  const sectionToDo = document.getElementById("Date");
-  const sectionDoing = document.getElementById("Nom");
-  const sectionDone = document.getElementById("Urgent");
-    
-  date.style.display = "none";
-  Nom.style.display = "none";
-  Urgent.style.display = "none";
-  
-  if (selectedValue === "Date") {
-    date.style.display = "block";
-  } else if (selectedValue === "Nom") {
-    Nom.style.display = "block";
-  } else if (selectedValue === "Urgent") {
-    Urgent.style.display = "block";
+  function toggleSectionsVisibility(selectedValue) {
+    const sectionToDo = document.getElementById("Date");
+    const sectionDoing = document.getElementById("Nom");
+    const sectionDone = document.getElementById("Urgent");
+
+    date.style.display = "none";
+    Nom.style.display = "none";
+    Urgent.style.display = "none";
+
+    if (selectedValue === "Date") {
+      date.style.display = "block";
+    } else if (selectedValue === "Nom") {
+      Nom.style.display = "block";
+    } else if (selectedValue === "Urgent") {
+      Urgent.style.display = "block";
+    }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
