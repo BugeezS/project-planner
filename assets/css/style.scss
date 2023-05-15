@@ -1,4 +1,67 @@
+* {
+  margin:5px;
+  padding:5px;
+  font-family: 'Sigmar', cursive;
+  box-sizing: border-box;
+}
+
 main {
   display: flex;
   justify-content: space-around;
+  
 }
+
+body{
+  background-color: rgb(9,87,121);
+  background: linear-gradient(90deg, rgba(9,87,121,1) 11%, rgba(0,212,255,0.40388655462184875) 100%); ;
+}
+
+
+
+$primary-color: #3498db;
+$secondary-color: #f39c12;
+
+
+.task-list {
+  list-style-type: none;
+  padding: 0;
+  
+  li {
+    margin-bottom: 10px;
+    
+    .task-title {
+      font-weight: bold;
+    }
+    
+    .task-description {
+      color: #777;
+    }
+    
+    .task-button {
+      background-color: $secondary-color;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      
+      &:hover {
+        background-color: darken($secondary-color, 10%);
+      }
+    }
+  }
+}
+
+
+.to_do {
+  background-color: lighten($primary-color, 30%);
+}
+
+.doing {
+  background-color: lighten($primary-color, 20%);
+}
+
+.done {
+  background-color: lighten($primary-color, 10%);
+}
+
