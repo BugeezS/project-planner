@@ -6,9 +6,6 @@ export function creatodo() {
 
   const countdownDiv = document.createElement("div");
   countdownDiv.classList.add("countdown");
-  const transferButton = document.createElement("input");
-  transferButton.classList.add("transfertButton");
-  tododiv.appendChild(transferButton);
 
   const createDivInputText = document.createElement("input");
   createDivInputText.setAttribute("type", "text");

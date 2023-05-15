@@ -2,30 +2,67 @@ import { createDoing } from "./doingDiv.js";
 import { creatodo } from "./tododiv.js";
 import { createDone } from "./divDone.js";
 
-// const DoingBtn = document.querySelector("#doing__button");
-// DoingBtn.addEventListener("click", createDoing);
 const buttontodoDiv = document.querySelector("#to_do__button");
 buttontodoDiv.addEventListener("click", creatodo);
-const buttonDoneDiv = document.querySelector("#done__button");
-buttonDoneDiv.addEventListener("click", createDone);
 
-// Get the Transfer button element
 const transferButton = document.getElementById("transfertButton");
 
-// Add a click event listener to the Transfer button
 transferButton.addEventListener("click", () => {
-  // Get all the task items in the To Do section
-  const toDoSection = document.querySelector(".to_do__div");
-  const toDoTasks = toDoSection.querySelectorAll("*");
-
-  // Loop through the task items and move them to the Doing section
+  const toDoSection = document.querySelector(".to_do");
   const doingSection = document.querySelector(".doing");
-  toDoTasks.forEach((task) => {
-    doingSection.appendChild(task);
-  });
 
-  // Remove the To Do section if it becomes empty
-  if (toDoSection.children.length === 1) {
-    toDoSection.remove();
+  const toDoUl = toDoSection.querySelector(".to_do__div__ul");
+  const countdownDiv = toDoSection.querySelector(".countdown");
+  const i = 0;
+
+  if (toDoUl) {
+    doingSection.appendChild(toDoUl);
   }
+  if (countdownDiv) {
+    doingSection.appendChild(countdownDiv);
+  }
+
+  const tododiv = document.querySelector(".to_do__div");
+  tododiv.remove();
+
+  const transferButtonDone = document.createElement("input");
+  transferButtonDone.type = "button";
+  transferButtonDone.value = "Done";
+  transferButtonDone.classList.add("transfertButtonDone");
+  doingSection.appendChild(transferButtonDone);
+
+  const transferButtonDoneUse = document.querySelector(".transfertButtonDone");
+
+  transferButtonDoneUse.addEventListener("click", () => {
+    const doneSection = document.querySelector(".done");
+    const doingSection = document.querySelector(".doing");
+
+    const toDoUl = doingSection.querySelector(".to_do__div__ul");
+    const countdownDiv = doingSection.querySelector(".countdown");
+
+    if (toDoUl) {
+      doneSection.appendChild(toDoUl);
+    }
+    if (countdownDiv) {
+      doneSection.appendChild(countdownDiv);
+    }
+
+    transferButtonDone.remove();
+
+    const deleteButtonDone = document.createElement("input");
+    deleteButtonDone.type = "button";
+    deleteButtonDone.value = "Delete";
+    deleteButtonDone.classList.add("deleteButtonDone");
+    doneSection.appendChild(deleteButtonDone);
+
+    deleteButtonDone.addEventListener("click", () => {
+      const transferredElements = doneSection.querySelectorAll(
+        ".to_do__div__ul, .countdown"
+      );
+      transferredElements.forEach((element) => {
+        element.remove();
+      });
+      deleteButtonDone.remove();
+    });
+  });
 });
